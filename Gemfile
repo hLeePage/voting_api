@@ -18,4 +18,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem "codeclimate-test-reporter", require: nil
+  gem 'pry'
 end
