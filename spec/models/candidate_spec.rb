@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Candidate, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Candidate do
+  it "checks if Candidate class exists" do
+    obama = Candidate.create!(name:"Obama", hometown:"Tennessee", district:"Nashville", party:"Democrat")
+    expect(obama.name).to eq("Obama")
+  end
 end
