@@ -1,5 +1,6 @@
 class CandidatesController < ApplicationController
   def index
-    puts "Get up off of that thing! Dance! You bettuh!"
+    @candidates = Candidate.all
+    render json: @candidates
   end
 end
