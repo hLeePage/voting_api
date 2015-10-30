@@ -7,3 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Candidate.create(name: 'Elmo', hometown: 'Denver', district:'23', party: 'Communist')
+Candidate.create(name: 'Bigbird', hometown: '4th ave', district:'8', party: 'non rep')
+Voter.create(name: 'Citizen', party: 'Rep')
+Candidate.create(name: 'JoJo', hometown: 'morristown', district: '9', party: 'Anarchist')
+Voter.create(name: 'ben', party: 'Rep')
+

@@ -7,6 +7,5 @@ class CandidatesController < ApplicationController
   def show
     @candidate = Candidate.find(params[:id])
     render json: @candidate
-    #hi and thank you polish sausage! :D
   end
 end
