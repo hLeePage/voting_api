@@ -11,6 +11,7 @@ gem 'puma'
 
 group :development do
   gem 'foreman'
+  gem 'rails-erd'
 end
 
 group :test do
