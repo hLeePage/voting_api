@@ -3,10 +3,12 @@ class VotersController < ApplicationController
     @voters = Voter.all
     render json: @voters
   end
+
   def show
     @voter = Voter.find(params[:id, :token_id])
     render json: @voter
   end
+
   def create
     @token = generate_token
     v = Voter.new(params[:name, :party])
@@ -17,6 +19,7 @@ class VotersController < ApplicationController
     end
     @token
   end
+
   def update
     @v = Voter.find(params[:id])
     if @v.update(params[:name, :party])
@@ -29,7 +32,7 @@ class VotersController < ApplicationController
   private
   def generate_token
     o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-    string = (0...50).map { o[rand(o.length)] }.join 
+    string = (0...50).map { o[rand(o.length)] }.join
     return string
   end
 end
