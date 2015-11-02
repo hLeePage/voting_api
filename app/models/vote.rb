@@ -1,3 +1,4 @@
 class Vote < ActiveRecord::Base
-    belongs_to :comments
+    belongs_to :voter
+    belongs_to :candidate
 end
