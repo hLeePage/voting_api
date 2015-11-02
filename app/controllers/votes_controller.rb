@@ -8,8 +8,9 @@ class VotesController < ApplicationController
     @vote = Vote.find(params[:id])
     render json: @vote
   end
+
   def create
-    @vote = Post.new(params[:voter_id,:candidate_id])
+    @vote = Vote.new(vote_params)
     if vote.save
       render json: vote
     else
@@ -24,6 +25,12 @@ class VotesController < ApplicationController
     else
       head :unprocessable_entity
     end
+  end
+
+  private
+
+  def vote_params
+    params.require(:vote).permit(:voter_id, :candidate_id)
   end
 end
 
