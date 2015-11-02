@@ -1,16 +1,17 @@
 class VotesController < ApplicationController
   def index
-    @votes = Vote.all
-    render json: @votes
+    votes = Vote.all
+    render json: votes
   end
 
-  def show 
-    @vote = Vote.find(params[:id])
-    render json: @vote
+  def show
+    vote = Vote.find(params[:id])
+    render json: vote
   end
 
   def create
-    @vote = Vote.new(vote_params)
+    vote = Vote.new(vote_params)
+    return render status: :unauthorized unless vote.voter.authenticate(request.headers["Authorization"].split(' ')[1])
     if vote.save
       render json: vote
     else
@@ -19,8 +20,9 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote = Vote.find(params[:voter_id])
-    if @vote.destroy
+    vote = Vote.find(params[:voter_id])
+    return render status: :unauthorized unless vote.voter.authenticate(request.headers["Authorization"].split(' ')[1])
+    if vote.destroy
       head :no_content
     else
       head :unprocessable_entity
