@@ -11,17 +11,17 @@ class VotesController < ApplicationController
 
   def create
     vote = Vote.new(vote_params)
-    return render status: :unauthorized unless vote.voter.authenticate(request.headers["Authorization"].split(' ')[1])
+    raise UnauthorizedError unless authenticate_user(vote.voter)
     if vote.save
-      render json: vote
+      render json: vote, status: :created
     else
-      render json: vote.errors
+      render json: vote.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     vote = Vote.find(params[:voter_id])
-    return render status: :unauthorized unless vote.voter.authenticate(request.headers["Authorization"].split(' ')[1])
+    raise UnauthorizedError unless authenticate_user(vote.voter)
     if vote.destroy
       head :no_content
     else
